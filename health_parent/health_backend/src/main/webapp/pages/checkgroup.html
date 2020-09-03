@@ -176,7 +176,7 @@
                             <template>
                                 <el-tabs v-model="activeName" type="card">
                                     <el-tab-pane label="基本信息" name="first">
-                                        <el-form label-position="right" label-width="100px">
+                                        <el-form label-position="right" label-width="100px" ref="form">
                                             <el-row>
                                                 <el-col :span="12">
                                                     <el-form-item label="编码">
@@ -282,24 +282,80 @@
             methods: {
                 //编辑
                 handleEdit() {
+
+                    axios.post("/checkgroup/edit.do?checkitemIds=" + this.checkitemIds,this.formData).then(res=>{
+                        if(res.data.flag){
+                            this.$message({
+                                message:res.data.message,
+                                type:'success'
+                            })
+                        }
+                    })
+                    this.dialogFormVisible4Edit = false
+                    this.findPage()
                 },
                 //添加
                 handleAdd () {
+                    // axios.post("/checkgroup/add.do?checkitemIds=" + this.checkitemIds,this.formData).then(res=>{
+                    console.log(this.formData);
+                    axios.post("/checkgroup/add.do?checkitemIds=30",this.formData).then(res=>{
+                        if(res.data.flag){
+                            this.$message({
+                                message:res.data.message,
+                                type:'success'
+                            })
+                        }
+                    })
+                    this.dialogFormVisible = false
+                    this.findPage()
                 },
                 //分页查询
                 findPage() {
+                    //todo 这里只要请求的参数为responsebody的就使用post
+                    axios.post("/checkgroup/findPage.do",this.pagination).then((res)=>{
+                        this.pagination.total =  res.data.total
+                        this.dataList = res.data.rows
+                    })
                 },
                 // 重置表单
                 resetForm() {
+                    this.formData = [];
+                    this.checkitemIds = []
                 },
                 // 弹出添加窗口
                 handleCreate() {
+                    this.resetForm()
+                    //返回所有的检查项
+                    axios.get("/checkitem/findAll.do").then((res)=>{
+                        this.tableData = res.data.data
+                    })
+                    this.dialogFormVisible = true
+
                 },
                 // 弹出编辑窗口
                 handleUpdate(row) {
+                    this.resetForm()
+                    this.dialogFormVisible4Edit = true
+                    axios.get("/checkgroup/findById.do?id="+row.id).then((res)=>{
+                        this.formData = res.data.data
+                        axios.get("/checkgroup/findCheckItemIdsByCheckGroupId.do?id="+row.id).then((res)=> {
+                            this.checkitemIds = res.data.data
+                            //返回所有的检查项
+                            axios.get("/checkitem/findAll.do").then((res)=>{
+                                this.tableData = res.data.data
+                            })
+
+
+                        })
+                    })
+
+                    // this.$refs.form.resetForm() todo 不知道为什么就是form不能获取
+
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
+                    this.pagination.currentPage = currentPage;
+                    this.findPage()
                 },
                 // 删除
                 handleDelete(row) {
