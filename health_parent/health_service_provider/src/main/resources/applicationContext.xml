@@ -14,6 +14,7 @@
     <!--读取配置文件-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!--配置数据库连接池-->
+    <!--todo 这里使用的是德鲁伊连接池-->
     <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
@@ -22,9 +23,11 @@
     </bean>
 
     <!--配置SqlSessionFactory对象-->
+    <!--todo mybatis一定要用这个工厂-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
         <property name="dataSource" ref="datasource"/>
         <!--集成github分页插件-->
+        <!--todo 这里就是分页查询配置插件-->
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
@@ -38,9 +41,11 @@
         </property>
     </bean>
 
+
+
     <!--扫描接口生成的代理对象-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer" id="mapper">
-        <property name="basePackage" value="com.bothsavage.mapper"/>
+        <property name="basePackage" value="com.bothsavage.dao"/>
     </bean>
 
     <!--开启事务管理器-->
@@ -49,6 +54,7 @@
     </bean>
 
     <!--开启事务管理的注解支持-->
+    <!--todo 这里就是配置的那个Transactional-->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 </beans>
