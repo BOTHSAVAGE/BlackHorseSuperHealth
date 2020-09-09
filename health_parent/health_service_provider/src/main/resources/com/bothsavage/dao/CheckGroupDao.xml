@@ -69,4 +69,12 @@
     <delete id="deleteAssocication" parameterType="int">
         delete from t_checkgroup_checkitem where checkgroup_id = #{id}
     </delete>
+
+
+    <!--todo 查询所有  注意这里的结果类型是CheckGroup，不是list-->
+    <select id="findAll"  resultType="com.bothsavage.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
+
+
 </mapper>

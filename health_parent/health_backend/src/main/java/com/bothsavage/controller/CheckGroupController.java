@@ -9,6 +9,7 @@ import com.bothsavage.pojo.CheckGroup;
 import com.bothsavage.service.CheckGroupService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class CheckGroupController {
     private CheckGroupService checkGroupService;
     //新增检查组
     @RequestMapping("/add")
-    public Result add(@RequestBody CheckGroup checkGroup, Integer[] checkitemIds){
+    public Result add(@RequestBody CheckGroup checkGroup,@RequestParam("checkitemIds") Integer[] checkitemIds){
         try{
             checkGroupService.add(checkGroup,checkitemIds);
         }catch (Exception e){
@@ -75,4 +76,24 @@ public class CheckGroupController {
         }
         return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);//新增成功
     }
+
+
+
+
+
+
+    //编辑检查组
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        try{
+            List<CheckGroup> checkGroupList = checkGroupService.findAll();
+            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,checkGroupList);//查询成功
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, MessageConstant.QUERY_CHECKGROUP_FAIL);//查询失败
+        }
+    }
+
+
+
 }

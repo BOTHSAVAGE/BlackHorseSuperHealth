@@ -1,5 +1,8 @@
 package com.bothsavage.service.implement;
 
+
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.CheckItemDao;
 import com.bothsavage.entity.PageResult;
@@ -8,6 +11,10 @@ import com.bothsavage.pojo.CheckItem;
 import com.bothsavage.service.CheckItemService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,10 +41,13 @@ public class CheckItemServiceImpl implements CheckItemService {
         Integer pageSize = queryPageBean.getPageSize();
         String queryString = queryPageBean.getQueryString();//查询条件
         //完成分页查询，基于mybatis框架提供的分页助手插件完成
+
+
         PageHelper.startPage(currentPage,pageSize);//todo 分页助手（第几页，行数）
         //select * from t_checkitem limit 0,10
         Page<CheckItem> page = checkItemDao.selectByCondition(queryString);
         long total = page.getTotal();//todo 分页助手api
+
         List<CheckItem> rows = page.getResult();
         return new PageResult(total,rows);
     }

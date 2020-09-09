@@ -12,6 +12,7 @@
         <module>health_common</module>
         <module>health_interface</module>
         <module>health_service_provider</module>
+        <module>health_jobs</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -181,6 +182,7 @@
             <!--<artifactId>jersey-client</artifactId>-->
             <!--<version>1.18.1</version>-->
             <!--</dependency>-->
+            <!--todo 文件存储-->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>

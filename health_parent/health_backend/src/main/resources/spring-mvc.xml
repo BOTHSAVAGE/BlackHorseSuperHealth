@@ -11,11 +11,11 @@
          http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-    <!--<dubbo:annotation package="com.bothsavge"/>-->
 
 
     <!--<import resource="spring-security.xml"/>-->
-    <!--<import resource="spring-redis.xml"/>-->
+
+    <import resource="spring-redis.xml"/>
 
     <mvc:annotation-driven>
         <!--配置@ResponseBody由fastjson解析,不配置的话用jackson-->
@@ -56,4 +56,8 @@
         <property name="maxInMemorySize" value="4096"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+
+
+
+
 </beans>

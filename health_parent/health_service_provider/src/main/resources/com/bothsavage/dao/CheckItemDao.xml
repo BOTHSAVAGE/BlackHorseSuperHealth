@@ -9,6 +9,8 @@
         (#{code},#{name},#{sex},#{age},#{price},#{type},#{remark},#{attention})
     </insert>
 
+
+
     <!--todo 没有分页查询的影子，推测分页查询是在查询的时候自己加的-->
     <select id="selectByCondition" parameterType="String" resultType="com.bothsavage.pojo.CheckItem">
         select * from t_checkitem
