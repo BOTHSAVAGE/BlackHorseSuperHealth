@@ -14,7 +14,7 @@
     </insert>
 
     <!--设置检查组和检查项多对多关系-->
-    <!--todo xml里面就用到了多表查询-->
+    <!--todo xml里面就用到了多表查询  06-04好好看-->
     <insert id="setCheckGroupAndCheckItem" parameterType="map">
         insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id)
         values

@@ -9,9 +9,16 @@ import com.bothsavage.dao.SetmealDao;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.pojo.Setmeal;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import redis.clients.jedis.JedisPool;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +34,12 @@ public class SetmealServiceImpl implements SetmealService{
     @Autowired
     private JedisPool jedisPool;
 
+    @Autowired
+    FreeMarkerConfigurer freeMarkerConfigurer;
+
+    @Value("${out_put_path}")
+    private String outPutPath;//todo EL表达式别忘了
+
     //新增套餐信息，同时需要关联检查组
     @Override
     public void add(Setmeal setmeal, Integer[] checkgroupIds) {
@@ -36,6 +49,39 @@ public class SetmealServiceImpl implements SetmealService{
         //将图片名称保存到Redis集合中
         String fileName = setmeal.getImg();
         jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES,fileName);
+
+        //当添加完成需要重新来生成静态页面
+    }
+
+    //用于生成静态页面的通用方法
+    public void generateHtml(String templateName,String htmlPageName,Map map){
+        //拿到配置对象
+        Configuration configuration = freeMarkerConfigurer.getConfiguration();
+        //声明字符串writer
+        Writer out = null;
+        try {
+            //得到模板
+            Template template = configuration.getTemplate(templateName);
+            //构建输出流 todo 这里使用的是filewriter 会把重名的覆盖掉
+            out = new FileWriter(new File(outPutPath+"/"+htmlPageName));
+            //输出文件
+            template.process(map,out);
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //生成当前方法所需要的静态页面
+    public void generateMobileStaticHtml(){
+        //在生成静态页面之前需要查询数据
+        List<Setmeal> list = setmealDao.findAll();
+
+        //todo 没写完自己去写
     }
 
     @Override

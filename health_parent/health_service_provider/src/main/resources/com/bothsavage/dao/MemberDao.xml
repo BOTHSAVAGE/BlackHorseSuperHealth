@@ -3,13 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bothsavage.dao.MemberDao">
     <!--查询所有会员-->
-    <select id="findAll" resultType="Member">
+    <select id="findAll" resultType="com.bothsavage.pojo.Member">
         select *
         from t_member
     </select>
 
     <!--根据条件查询-->
-    <select id="selectByCondition" parameterType="string" resultType="Member">
+    <select id="selectByCondition" parameterType="string" resultType="com.bothsavage.pojo.Member">
         select * from t_member
         <if test="value != null and value.length > 0">
             where fileNumber = #{value} or phoneNumber = #{value} or name = #{value}
@@ -17,7 +17,7 @@
     </select>
 
     <!--新增会员-->
-    <insert id="add" parameterType="Member">
+    <insert id="add" parameterType="com.bothsavage.pojo.Member">
         <selectKey resultType="int" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -34,21 +34,21 @@
     </delete>
 
     <!--根据id查询会员-->
-    <select id="findById" parameterType="int" resultType="Member">
+    <select id="findById" parameterType="int" resultType="com.bothsavage.pojo.Member">
         select *
         from t_member
         where id = #{id}
     </select>
 
     <!--根据手机号查询会员-->
-    <select id="findByTelephone" parameterType="string" resultType="Member">
+    <select id="findByTelephone" parameterType="string" resultType="com.bothsavage.pojo.Member">
         select *
         from t_member
         where phoneNumber = #{phoneNumber}
     </select>
 
     <!--编辑会员-->
-    <update id="edit" parameterType="Member">
+    <update id="edit" parameterType="com.bothsavage.pojo.Member">
         update t_member
         <set>
             <if test="fileNumber != null">
