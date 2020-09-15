@@ -6,7 +6,7 @@ import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.CheckItem;
-import com.bothsavage.service.CheckItemService;
+import com.bothsavage.controller.service.CheckItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

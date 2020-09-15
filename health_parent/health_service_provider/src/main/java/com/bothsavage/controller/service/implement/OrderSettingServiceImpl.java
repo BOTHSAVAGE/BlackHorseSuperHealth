@@ -1,9 +1,9 @@
-package com.bothsavage.service.implement;
+package com.bothsavage.controller.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.OrderSettingDao;
 import com.bothsavage.pojo.OrderSetting;
-import com.bothsavage.service.OrderSettingService;
+import com.bothsavage.controller.service.OrderSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

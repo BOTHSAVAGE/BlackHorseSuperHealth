@@ -1,9 +1,9 @@
-package com.bothsavage.service.implement;
+package com.bothsavage.controller.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.MemberDao;
 import com.bothsavage.pojo.Member;
-import com.bothsavage.service.MemberService;
+import com.bothsavage.controller.service.MemberService;
 import com.bothsavage.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

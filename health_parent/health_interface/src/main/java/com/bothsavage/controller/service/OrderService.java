@@ -1,4 +1,4 @@
-package com.bothsavage.service;
+package com.bothsavage.controller.service;
 
 import com.bothsavage.entity.Result;
 
