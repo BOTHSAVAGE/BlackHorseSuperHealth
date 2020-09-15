@@ -1,13 +1,12 @@
 package com.bothsavage.controller;
-import com.alibaba.dubbo.config.annotation.Reference;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.constant.MessageConstant;
+import com.bothsavage.controller.service.CheckItemService;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.CheckItem;
-import com.bothsavage.controller.service.CheckItemService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,11 +46,15 @@ public class CheckItemController {
     //删除检查项
     @RequestMapping("/delete")
     public Result delete(Integer id){
-        try{
+        try {
             checkItemService.deleteById(id);
-        }catch (Exception e){
-            e.printStackTrace();
+        }
+        catch (Exception e){
             //服务调用失败
+            e.printStackTrace();
+            if(e.getMessage().contains("DataIntegrityViolationException")){
+                return new Result(false, MessageConstant.DELETE_CHECKITEM_FAIL_RELATION);
+            }
             return new Result(false, MessageConstant.DELETE_CHECKITEM_FAIL);
         }
         return  new Result(true, MessageConstant.DELETE_CHECKITEM_SUCCESS);

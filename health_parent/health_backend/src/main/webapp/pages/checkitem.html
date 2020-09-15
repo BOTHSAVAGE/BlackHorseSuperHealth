@@ -223,14 +223,12 @@
                     name: [{ required: true, message: '项目名称为必填项', trigger: 'blur' }]
                 }
             },
-            //钩子函数，VUE对象初始化完成后自动执行
             created() {
                 this.findPage()
             },
             methods: {
                 //编辑
                 handleEdit() {
-
                     axios.post("/checkitem/edit.do",this.formData).then((res)=>{
                         if(res.data.flag){
                             //关闭窗口
@@ -238,19 +236,18 @@
                             //更新数据
                             this.findPage()
                             //提示更改消息
-                            this.$message({
-                                message:res.data.message,
-                                type:'success'
-                            })
+                            this.$message.success(res.data.message)
+                        }else{
+                            this.$message.error(res.data.message)
                         }
+                    }).catch(()=>{
+                        this.dialogFormVisible4Edit = false
+                        this.$message.error("服务器挂掉了")
                     })
-
-
                 },
                 //添加
                 handleAdd () {
                     //进行表单校验
-                    console.log(this.$refs['dataAddForm']);
                     this.$refs['dataAddForm'].validate((valid) => {
                         if(valid){
                             axios.post("/checkitem/add.do",this.formData).then((res)=>{
@@ -261,14 +258,13 @@
                                     //查询最新的数据
                                     this.findPage();
                                     //弹出提示信息
-                                    this.$message({
-                                        message:res.data.message,
-                                        type:'success'
-                                    })
-                                }else {//执行失败
-                                    //弹出提示·
+                                    this.$message.success(res.data.message)
+                                }else {
                                     this.$message.error(res.data.message)
                                 }
+                            }).catch(()=>{
+                                this.dialogFormVisible4Edit = false
+                                this.$message.error("服务器挂掉了")
                             })
                         }else{//校验不通过
                             this.$message.error("数据校验失败，请检查")
@@ -285,52 +281,39 @@
                 },
                 // 重置表单
                 resetForm() {
-                    //1.重置数据
-                    this.formData = {}
-                    //2.重置样式和数据(element的内部方法)
-                    // this.$refs.dataAddForm.resetForm();todo 这里有报错
+                    try {
+                        this.$refs.dataAddForm.resetFields()
+                        this.$refs.dataEditForm.resetFields()
+                    }catch (e) {
+                        console.log(e);
+                    }
                 },
                 // 弹出添加窗口
                 handleCreate() {
                     this.resetForm()
                     this.dialogFormVisible = true;
-
-                    console.log(this.dialogFormVisible);
                 },
                 // 弹出编辑窗口
                 handleUpdate(row) {
-
-                },
-                // 弹出编辑窗口
-                handleUpdate(row) {
-                    //表单回显
-                    console.log(row);
-
+                    this.resetForm()
                     axios.get("/checkitem/findById.do",{
                             params: {
                                 id: row.id
                         }
                         }).then((res)=>{
-                        this.formData = res.data.data//todo 第一个data是axios的，第二个data是json中的
-                        console.log(this.formData);
+                        //todo 第一个data是axios的，第二个data是json中的
+                        this.formData = res.data.data
                     })
-
                     //弹出窗口
-
                     this.dialogFormVisible4Edit = true
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
-
-                    console.log(currentPage);
-                    console.log(this.dataList);
-
                     this.pagination.currentPage = currentPage
                     this.findPage()
                 },
                 // 删除
                 handleDelete(row) {
-
                     this.$confirm("此操作将永久删除，是否确认？",'删除警告',{
                         confirmButtonText:"确定",
                         cancelButtonText:"取消",
@@ -342,29 +325,19 @@
                             }
                         }).then(res=>{
                             if(res.data.flag){
-                                this.$message({
-                                    message:res.data.message,
-                                    type:'success'
-                                })
+                                this.findPage()
+                                this.$message.success(res.data.message)
                             }else{
                                 //若有关联的
-                                this.$message({
-                                    message:res.data.message,
-                                    type:'error'
-                                })
+                                this.$message.error(res.data.message)
                             }
-
                         })
-
-                        this.findPage()
                     }).catch(()=>{
                         this.$message({
                             message:"取消删除",
                             type:'info'
                         })
                     })
-
-
                 }
             }
         })

@@ -5,6 +5,7 @@ import com.bothsavage.pojo.Permission;
 import com.bothsavage.pojo.Role;
 import com.bothsavage.pojo.User;
 import com.bothsavage.controller.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,15 +23,20 @@ import java.util.Set;
  */
 
 @Component
-public class SpringSecurityUserService implements UserDetailsService {
+public class SecurityUserService implements UserDetailsService {
     //使用dubbo通过网络远程调用服务提供方获取数据库中的用户信息
     //去zookeeper的服务中心去查找服务
     @Reference
     private UserService userService;
 
+    @Autowired
+    EncodePasswordUtils encodePasswordUtils;
+
     //根据用户名查询数据库获取用户信息
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        String a = encodePasswordUtils.encodePassword("admin");
+
         User user = userService.findByUsername(username);
         if(user == null){
             //用户名不存在
