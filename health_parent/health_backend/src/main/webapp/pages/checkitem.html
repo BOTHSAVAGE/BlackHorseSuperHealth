@@ -282,6 +282,7 @@
                 // 重置表单
                 resetForm() {
                     try {
+                        this.formData = {}
                         this.$refs.dataAddForm.resetFields()
                         this.$refs.dataEditForm.resetFields()
                     }catch (e) {

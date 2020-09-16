@@ -5,6 +5,7 @@ import com.bothsavage.pojo.Permission;
 import com.bothsavage.pojo.Role;
 import com.bothsavage.pojo.User;
 import com.bothsavage.controller.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,7 @@ import java.util.Set;
  */
 
 @Component
+@Slf4j
 public class SecurityUserService implements UserDetailsService {
     //使用dubbo通过网络远程调用服务提供方获取数据库中的用户信息
     //去zookeeper的服务中心去查找服务
@@ -36,6 +38,7 @@ public class SecurityUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String a = encodePasswordUtils.encodePassword("admin");
+        log.info(a);
 
         User user = userService.findByUsername(username);
         if(user == null){

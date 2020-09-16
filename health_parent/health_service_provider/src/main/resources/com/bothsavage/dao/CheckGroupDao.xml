@@ -77,4 +77,9 @@
     </select>
 
 
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete  from t_checkgroup where id = #{id}
+    </delete>
+
+
 </mapper>
