@@ -1,8 +1,0 @@
-com\bothsavage\service\implement\CheckItemServiceImpl.class
-com\bothsavage\dao\OrderSettingDao.class
-com\bothsavage\service\implement\CheckGroupServiceImpl.class
-com\bothsavage\dao\SetmealDao.class
-com\bothsavage\dao\CheckGroupDao.class
-com\bothsavage\service\implement\OrderSettingServiceImpl.class
-com\bothsavage\service\implement\SetmealServiceImpl.class
-com\bothsavage\dao\CheckItemDao.class
