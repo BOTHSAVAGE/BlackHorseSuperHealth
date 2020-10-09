@@ -1,0 +1,52 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xmlns:security="http://www.springframework.org/schema/security"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">-->
+
+    <!--<security:http pattern="/css/**" security="none"/>-->
+    <!--<security:http pattern="/img/**" security="none"/>-->
+    <!--<security:http pattern="/js/**" security="none"/>-->
+    <!--<security:http pattern="/plugins/**" security="none"/>-->
+
+    <!--&lt;!&ndash;页面拦截规则&ndash;&gt;-->
+    <!--<security:http auto-config="true" use-expressions="true">-->
+
+        <!--&lt;!&ndash;设置同源策略 目的是使得 iframe可以被访问&ndash;&gt;-->
+        <!--<security:headers>-->
+            <!--<security:frame-options policy="SAMEORIGIN"></security:frame-options>-->
+        <!--</security:headers>-->
+        <!--<security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>-->
+        <!--&lt;!&ndash;使用自定义的登录页面&ndash;&gt;-->
+        <!--<security:form-login login-page="/login.html"-->
+                             <!--username-parameter="username"-->
+                             <!--password-parameter="password"-->
+                             <!--login-processing-url="/login.do"-->
+                             <!--always-use-default-target="true"-->
+                             <!--default-target-url="/pages/main.html"-->
+                             <!--authentication-failure-url="/login.html"/>-->
+
+        <!--&lt;!&ndash;退出登录设置&ndash;&gt;-->
+        <!--<security:logout logout-url="/logout.do" logout-success-url="/login.html"/>-->
+
+        <!--&lt;!&ndash;禁用csrf过滤器(如果使用自定义登录页面 必须关闭csrf过滤器)&ndash;&gt;-->
+        <!--<security:csrf disabled="true"/>-->
+    <!--</security:http>-->
+
+    <!--&lt;!&ndash;认证管理器&ndash;&gt;-->
+    <!--<security:authentication-manager>-->
+        <!--&lt;!&ndash;认证提供者 执行具体的认证逻辑&ndash;&gt;-->
+        <!--<security:authentication-provider user-service-ref="securityUserService">-->
+            <!--&lt;!&ndash;指定密码加密策略&ndash;&gt;-->
+            <!--<security:password-encoder ref="bCryptPasswordEncoder"/>-->
+        <!--</security:authentication-provider>-->
+    <!--</security:authentication-manager>-->
+
+    <!--&lt;!&ndash;bcryptCode 加密方式&ndash;&gt;-->
+    <!--<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="bCryptPasswordEncoder"/>-->
+    <!--&lt;!&ndash;具体登录验证类&ndash;&gt;-->
+    <!--<bean class="com.bothsavage.service.SpringSecurityUserService" id="securityUserService"/>-->
+
+    <!--&lt;!&ndash;开启注册控制权限&ndash;&gt;-->
+    <!--<security:global-method-security pre-post-annotations="enabled"/>-->
+<!--</beans>-->

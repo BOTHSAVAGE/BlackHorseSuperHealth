@@ -1,0 +1,17 @@
+com\bothsavage\pojo\CheckGroup.class
+com\bothsavage\constant\MessageConstant.class
+com\bothsavage\entity\Result.class
+com\bothsavage\pojo\CheckItem.class
+com\bothsavage\pojo\Permission.class
+com\bothsavage\pojo\Role.class
+com\bothsavage\entity\PageResult.class
+com\bothsavage\pojo\Menu.class
+com\bothsavage\pojo\Member.class
+com\bothsavage\pojo\OrderSetting.class
+com\bothsavage\entity\QueryPageBean.class
+com\bothsavage\constant\RedisConstant.class
+com\bothsavage\pojo\Setmeal.class
+com\bothsavage\pojo\Order.class
+com\bothsavage\pojo\User.class
+com\bothsavage\utils\QiniuUtils.class
+com\bothsavage\utils\POIUtils.class
