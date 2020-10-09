@@ -17,6 +17,8 @@
 
     <resultMap id="findByIdResultMap" type="com.bothsavage.pojo.Setmeal" extends="baseResultMap">
         <!--多对多映射-->
+        <!--todo 这里属于mybatis高级-->
+        <!--select 这里就是在发第二条sql-->
         <collection
                 property="checkGroups"
                 ofType="com.bothsavage.pojo.CheckGroup"

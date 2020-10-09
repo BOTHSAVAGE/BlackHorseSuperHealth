@@ -305,11 +305,10 @@
                     this.imageUrl = null
                     this.formData = {}
                     this.activeName = "first"
-                    if(this.$refs["addForm"]){
-                        this.$refs["addForm"].resetFields() //todo 第一次没有加载，因为默认为隐藏的
-                    }else {
-                        console.log("refs可以使用了")
-                    }
+                    try {
+                        this.$refs["addForm"].resetFields()
+                    }catch (e) {}
+
                 },
                 // 弹出添加窗口
                 handleCreate() {

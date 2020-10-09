@@ -2,14 +2,13 @@ package com.bothsavage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.constant.MessageConstant;
+import com.bothsavage.controller.service.CheckGroupService;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.CheckGroup;
-import com.bothsavage.service.CheckGroupService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class CheckGroupController {
     private CheckGroupService checkGroupService;
     //新增检查组
     @RequestMapping("/add")
-    public Result add(@RequestBody CheckGroup checkGroup,@RequestParam("checkitemIds") Integer[] checkitemIds){
+    public Result add(@RequestBody CheckGroup checkGroup,Integer[] checkitemIds){
         try{
             checkGroupService.add(checkGroup,checkitemIds);
         }catch (Exception e){
@@ -77,9 +76,19 @@ public class CheckGroupController {
         return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);//新增成功
     }
 
-
-
-
+    //删除检查组
+    @RequestMapping("/delete")
+    public Result delete(Integer id){
+        try {
+            checkGroupService.deleteById(id);
+        }
+        catch (Exception e){
+            //服务调用失败
+            e.printStackTrace();
+            return new Result(false, "删除检查组失败");
+        }
+        return  new Result(true, "删除检查组成功");
+    }
 
 
     //编辑检查组

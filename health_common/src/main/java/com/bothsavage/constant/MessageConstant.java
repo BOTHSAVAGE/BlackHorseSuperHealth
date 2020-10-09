@@ -3,6 +3,7 @@ package com.bothsavage.constant;
  * 消息常量
  */
 public class MessageConstant {
+    public static final String DELETE_CHECKITEM_FAIL_RELATION = "删除检查项失败，当前检查项被关联";
     public static final String DELETE_CHECKITEM_FAIL = "删除检查项失败";
     public static final String DELETE_CHECKITEM_SUCCESS = "删除检查项成功";
     public static final String ADD_CHECKITEM_SUCCESS = "新增检查项成功";

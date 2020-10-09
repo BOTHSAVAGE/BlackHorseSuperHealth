@@ -23,4 +23,18 @@
     <select id="getOrderSettingByMonth" parameterType="map" resultType="com.bothsavage.pojo.OrderSetting">
         select * from t_ordersetting where orderDate between #{begin} and #{end}
     </select>
+
+    <select id="findByOrderDate" parameterType="date" resultType="com.bothsavage.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate between #{begin} and #{end}
+    </select>
+
+    <update id="editReservationsByOrderDate" parameterType="com.bothsavage.pojo.OrderSetting">
+        update t_ordersetting
+        set number = #{number}
+        where orderDate = #{orderDate}
+</update>
+
+
+
+
 </mapper>
