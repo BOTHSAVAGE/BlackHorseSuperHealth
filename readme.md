@@ -25,3 +25,32 @@
 
 > 该模块用于定义所有服务的接口规范。在RPC中使用的时候，就可以依赖同一个Interface模块，根据接口去找实现类
 
+## Service Provider
+
+### src
+
+- service.implement
+  - 各种实现类
+- dao
+  - mybatis的服务接口
+
+### resources
+
+* spring*.xml
+  * DruidDataSource，sqlSessionFactory（PageHelper），MapperScannerConfigurer
+  * freemarkerConfig
+  * jedisPoolConfig，jedisPool
+  * dubbo
+  * transactionManager
+* mybatis的映射文件
+
+### webapp
+
+* ftl模板
+  * 页面静态化的模板
+* web.xml
+  * ContextLoaderListener
+  * 编码过滤器
+
+> 架构是spring和mybatis整合放在tomcat服务器上，然后将服务发布出去
+
