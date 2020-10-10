@@ -1,6 +1,7 @@
 package com.bothsavage.constant;
+
 /**
- * 消息常量
+ * 消息返回常量
  */
 public class MessageConstant {
     public static final String DELETE_CHECKITEM_FAIL_RELATION = "删除检查项失败，当前检查项被关联";
