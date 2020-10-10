@@ -1,24 +1,26 @@
-package com.bothsavage.controller.service.implement;
+package com.bothsavage.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.bothsavage.service.SetmealService;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.bothsavage.constant.RedisConstant;
 import com.bothsavage.dao.SetmealDao;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.pojo.Setmeal;
+import com.bothsavage.service.SetmealService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import redis.clients.jedis.JedisPool;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,8 +39,11 @@ public class SetmealServiceImpl implements SetmealService{
     @Autowired
     FreeMarkerConfigurer freeMarkerConfigurer;
 
-    @Value("${out_put_path}")
-    private String outPutPath;//todo EL表达式别忘了
+    private String outPutPath = "D:/Work/JavaWork/BlackHorseSuperHealth/health_mobile/src/main/webapp/pages";
+
+
+
+
 
     //新增套餐信息，同时需要关联检查组
     @Override

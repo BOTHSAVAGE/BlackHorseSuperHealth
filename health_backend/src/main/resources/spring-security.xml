@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:mvc="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!--todo security="none" 表示的意思就是不进行权限的控制-->
@@ -50,13 +49,14 @@
         <!--认证提供者 执行具体的认证逻辑-->
         <security:authentication-provider user-service-ref="securityUserService">
             <!--指定密码加密策略-->
-            <security:password-encoder ref="bCryptPasswordEncoder"/>
+            <security:password-encoder ref="MyPasswordEncoder"/>
+
         </security:authentication-provider>
 
     </security:authentication-manager>
 
     <!--bcryptCode 加密方式-->
-    <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="bCryptPasswordEncoder"/>
+    <bean class="com.bothsavage.utils.MyPasswordEncoder" id="MyPasswordEncoder"/>
     <!--todo 具体登录验证类，已经通过注解管理了-->
 
     <!--开启注册控制权限-->

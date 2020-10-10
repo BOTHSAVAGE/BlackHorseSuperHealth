@@ -2,16 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bothsavage.dao.CheckItemDao">
-    <!--插入检查项数据 todo 标签里面就是sql语句-->
+    <!--插入检查项数据-->
     <insert id="add" parameterType="com.bothsavage.pojo.CheckItem">
         insert into t_checkitem(code,name,sex,age,price,type,remark,attention)
                       values
         (#{code},#{name},#{sex},#{age},#{price},#{type},#{remark},#{attention})
     </insert>
 
-
-
-    <!--todo 没有分页查询的影子，推测分页查询是在查询的时候自己加的-->
     <select id="selectByCondition" parameterType="String" resultType="com.bothsavage.pojo.CheckItem">
         select * from t_checkitem
         <if test="value != null and value.length > 0">
@@ -65,5 +62,12 @@
 
     <select id="findAll" resultType="com.bothsavage.pojo.CheckItem">
         select * from t_checkitem
+    </select>
+
+    <!--根据检查组ID查询关联的检查项-->
+    <select id="findCheckItemById" parameterType="int" resultType="com.bothsavage.pojo.CheckItem">
+        select * from t_checkitem
+        where id
+  	    in (select checkitem_id from t_checkgroup_checkitem where checkgroup_id=#{id})
     </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.bothsavage.controller.service.implement;
+package com.bothsavage.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.OrderSettingDao;

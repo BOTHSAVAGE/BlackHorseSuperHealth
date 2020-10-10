@@ -1,11 +1,11 @@
-package com.bothsavage.controller.service.implement;
+package com.bothsavage.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.CheckGroupDao;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.pojo.CheckGroup;
-import com.bothsavage.controller.service.CheckGroupService;
+import com.bothsavage.service.CheckGroupService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * 检查组服务
  */
-
 @Service(interfaceClass = CheckGroupService.class)
 @Transactional
 public class CheckGroupServiceImpl implements CheckGroupService {
