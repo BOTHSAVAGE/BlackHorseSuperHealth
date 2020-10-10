@@ -1,14 +1,12 @@
 package com.bothsavage.controller.service.implement;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bothsavage.dao.CheckItemDao;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.pojo.CheckItem;
-import com.bothsavage.controller.service.CheckItemService;
+import com.bothsavage.service.CheckItemService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 

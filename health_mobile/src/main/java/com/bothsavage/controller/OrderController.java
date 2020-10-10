@@ -5,7 +5,7 @@ import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.constant.RedisMessageConstant;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.Order;
-import com.bothsavage.controller.service.OrderService;
+import com.bothsavage.service.OrderService;
 import com.bothsavage.utils.SMSUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

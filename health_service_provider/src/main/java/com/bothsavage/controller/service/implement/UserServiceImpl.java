@@ -1,7 +1,7 @@
 package com.bothsavage.controller.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.bothsavage.controller.service.UserService;
+import com.bothsavage.service.UserService;
 import com.bothsavage.dao.PermissionDao;
 import com.bothsavage.dao.RoleDao;
 import com.bothsavage.dao.UserDao;

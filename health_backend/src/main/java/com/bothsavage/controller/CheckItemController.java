@@ -2,7 +2,7 @@ package com.bothsavage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.constant.MessageConstant;
-import com.bothsavage.controller.service.CheckItemService;
+import com.bothsavage.service.CheckItemService;
 import com.bothsavage.entity.PageResult;
 import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;

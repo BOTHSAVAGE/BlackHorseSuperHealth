@@ -1,7 +1,7 @@
 package com.bothsavage.controller.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.bothsavage.controller.service.ReportService;
+import com.bothsavage.service.ReportService;
 import com.bothsavage.dao.MemberDao;
 import com.bothsavage.dao.OrderDao;
 import com.bothsavage.utils.DateUtils;

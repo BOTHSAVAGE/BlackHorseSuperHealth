@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.OrderSetting;
-import com.bothsavage.controller.service.OrderSettingService;
+import com.bothsavage.service.OrderSettingService;
 import com.bothsavage.utils.POIUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

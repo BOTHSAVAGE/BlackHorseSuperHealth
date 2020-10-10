@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.pojo.Permission;
 import com.bothsavage.pojo.Role;
 import com.bothsavage.pojo.User;
-import com.bothsavage.controller.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

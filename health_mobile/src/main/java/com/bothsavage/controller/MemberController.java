@@ -6,7 +6,7 @@ import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.constant.RedisMessageConstant;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.Member;
-import com.bothsavage.controller.service.MemberService;
+import com.bothsavage.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

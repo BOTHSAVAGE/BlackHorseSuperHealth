@@ -1,7 +1,7 @@
 package com.bothsavage.controller.service.implement;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.bothsavage.controller.service.SetmealService;
+import com.bothsavage.service.SetmealService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.bothsavage.constant.RedisConstant;
