@@ -54,3 +54,39 @@
 
 > 架构是spring和mybatis整合放在tomcat服务器上，然后将服务发布出去
 
+## Backend
+
+### src
+
+* 各种controller
+* service（spring security要求的service）
+
+### resources
+
+* dubbo
+* springMVC
+* spring
+* redis
+* spring security
+
+### webapp
+
+* web.xml
+  * DispatcherServlet
+  * springSecurityFilterChain
+* 前端页面Vue
+
+## Mobile
+
+* src
+  * controller
+* resources
+  * dubbo
+  * sprinMVC
+  * redis
+* webapp
+  * web.xml
+    * DispatcherServlet
+    * 乱码过滤器
+  * 前端页面Vue
+
