@@ -101,7 +101,7 @@
                 //分页查询
                 findPage() {
                     //todo 这里只要请求的参数为responsebody的就使用post
-                    axios.post("/order/findPage.do",this.pagination).then((res)=>{
+                    axios.post("/order/findPage",this.pagination).then((res)=>{
                         this.pagination.total =  res.data.total
                         this.dataList = res.data.rows
                     })

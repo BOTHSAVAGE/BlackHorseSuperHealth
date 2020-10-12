@@ -37,7 +37,7 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart1 = echarts.init(document.getElementById('chart1'));
 
-        axios.get("/report/getMemberReport.do").then((res)=>{
+        axios.get("/report/getMemberReport").then((res)=>{
             myChart1.setOption(
                                 {
                                     title: {

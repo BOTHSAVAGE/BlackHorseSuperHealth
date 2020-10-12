@@ -158,7 +158,7 @@
 
         created(){
             //发送ajax请求，请求Controller获取当前登录用户的用户名，展示到页面中
-            axios.get("/user/getUsername.do").then((res) => {
+            axios.get("/user/getUsername").then((res) => {
                 if(res.data.flag){
                     this.username = res.data.data;
                 }

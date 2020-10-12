@@ -35,7 +35,7 @@
                     <el-card class="box-card">
                         <div class="boxMain">
                             <el-button style="margin-bottom: 20px;margin-right: 20px" type="primary" @click="downloadTemplate()">模板下载</el-button>
-                            <el-upload action="/ordersetting/upload.do"
+                            <el-upload action="/ordersetting/upload"
                                        name="excelFile"
                                        :show-file-list="false"
                                        :on-success="handleSuccess"
@@ -144,7 +144,7 @@
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                     }).then(({value}) => {
-                        axios.post("/ordersetting/editNumberByDate.do",{
+                        axios.post("/ordersetting/editNumberByDate",{
                             "orderDate": this.formatDate(this.currentYear,this.currentMonth,day.getDate()),
                             "number":value
                         }).then((res)=>{
@@ -247,7 +247,7 @@
 
 
 
-                    axios.get("/ordersetting/getOrderSettingByMonth.do?date="+this.currentYear+"-"+this.currentMonth).then((res)=>{
+                    axios.get("/ordersetting/getOrderSettingByMonth?date="+this.currentYear+"-"+this.currentMonth).then((res)=>{
                         this.leftobj = res.data.data
                     })
                     console.log(this.leftobj);

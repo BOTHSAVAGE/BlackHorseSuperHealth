@@ -125,7 +125,7 @@
                         validateCodeButton = $("#validateCodeButton")[0];//锁定dom对象
                         clock = window.setInterval(doLoop,1000);//定时器方法，可以实现每隔指定的时间调用指定的方法
                         //发送ajax请求，为用户发送手机验证码
-                        axios.post("/validateCode/send4Order.do?telephone=" + telephone).then((res) => {
+                        axios.post("/validateCode/send4Order?telephone=" + telephone).then((res) => {
                             if(!res.data.flag){
                                 //短信验证码发送失败
                                 this.$message.error(res.data.message);
@@ -142,7 +142,7 @@
                             return false;
                         }
                         //发送ajax请求，提交表单数据到后台进行业务处理
-                        axios.post("/order/submit.do",this.orderInfo).then((res) => {
+                        axios.post("/order/submit",this.orderInfo).then((res) => {
                             if(res.data.flag){
                                 //预约成功，跳转到成功页面
                                 window.location.href = "orderSuccess.html?orderId=" + res.data.data;
@@ -155,7 +155,7 @@
                 },
                 mounted(){
                     //发送ajax请求，根据套餐ID查询套餐信息，用于页面展示
-                    axios.post("/setmeal/findById.do?id=" + id).then((res) =>{
+                    axios.post("/setmeal/findById?id=" + id).then((res) =>{
                         if(res.data.flag){
                             this.setmeal = res.data.data;
                         }

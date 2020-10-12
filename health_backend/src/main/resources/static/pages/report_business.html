@@ -119,7 +119,7 @@
                 }
             },
             created() {
-                axios.get("/report/getBusinessReportData.do").then((res)=>{
+                axios.get("/report/getBusinessReportData").then((res)=>{
                     if(res.data.flag){
                         this.reportData = res.data.data;
                     }else{
@@ -129,7 +129,7 @@
             },
             methods:{
                 exportExcel(){
-                    window.location.href = '/report/exportBusinessReport.do';
+                    window.location.href = '/report/exportBusinessReport';
                 }
             }
         })

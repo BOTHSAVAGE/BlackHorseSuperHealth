@@ -229,7 +229,7 @@
             methods: {
                 //编辑
                 handleEdit() {
-                    axios.post("/checkitem/edit.do",this.formData).then((res)=>{
+                    axios.post("/checkitem/edit",this.formData).then((res)=>{
                         if(res.data.flag){
                             //关闭窗口
                             this.dialogFormVisible4Edit = false
@@ -250,7 +250,7 @@
                     //进行表单校验
                     this.$refs['dataAddForm'].validate((valid) => {
                         if(valid){
-                            axios.post("/checkitem/add.do",this.formData).then((res)=>{
+                            axios.post("/checkitem/add",this.formData).then((res)=>{
                                 //todo res.data为固定写法
                                 if(res.data.flag){
                                     //关闭新增窗口
@@ -274,7 +274,7 @@
                 },
                 //分页查询
                 findPage() {
-                    axios.post("/checkitem/findPage.do",this.pagination).then((res)=>{
+                    axios.post("/checkitem/findPage",this.pagination).then((res)=>{
                         this.dataList = res.data.rows
                         this.pagination.total = res.data.total
                     })
@@ -297,7 +297,7 @@
                 // 弹出编辑窗口
                 handleUpdate(row) {
                     this.resetForm()
-                    axios.get("/checkitem/findById.do",{
+                    axios.get("/checkitem/findById",{
                             params: {
                                 id: row.id
                         }
@@ -320,7 +320,7 @@
                         cancelButtonText:"取消",
                         type:"warning"
                     }).then(()=>{
-                        axios.get("/checkitem/delete.do",{
+                        axios.get("/checkitem/delete",{
                             params: {
                                 id: row.id
                             }

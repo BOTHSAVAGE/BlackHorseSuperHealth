@@ -52,7 +52,7 @@
         },
         mounted (){
             //发送ajax请求，获取所有的套餐数据，赋值给setmealList模型数据，用于页面展示
-            axios.get("/setmeal/getAllSetmeal.do").then((res) => {
+            axios.get("/setmeal/getAllSetmeal").then((res) => {
                 if(res.data.flag){
                     //查询成功，给模型数据赋值
                     this.setmealList = res.data.data;

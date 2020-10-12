@@ -33,16 +33,7 @@ public class OrderController {
         String validateCode = (String) map.get("validateCode");
 
         //将用户输入的验证码和Redis中保存的验证码进行比对
-        if(validateCodeInRedis != null && validateCode
-
-
-
-
-
-
-
-
-                != null && validateCode.equals(validateCodeInRedis)){
+        if(validateCodeInRedis != null && validateCode!= null && validateCode.equals(validateCodeInRedis)){
             //如果比对成功，调用服务完成预约业务处理
             map.put("orderType", Order.ORDERTYPE_WEIXIN);//设置预约类型，分为微信预约、电话预约
             Result result = null;
@@ -55,7 +46,8 @@ public class OrderController {
             if(result.isFlag()){
                 //预约成功，可以为用户发送短信
                 try{
-                    SMSUtils.sendShortMessage(SMSUtils.ORDER_NOTICE,telephone, (String) map.get("orderDate"));
+                    System.out.println(telephone+"预约成功");
+//                    SMSUtils.sendShortMessage(SMSUtils.ORDER_NOTICE,telephone, (String) map.get("orderDate"));
                 }catch (Exception e){
                     e.printStackTrace();
                 }
