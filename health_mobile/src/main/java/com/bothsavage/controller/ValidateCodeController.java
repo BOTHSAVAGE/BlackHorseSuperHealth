@@ -3,7 +3,6 @@ package com.bothsavage.controller;
 import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.constant.RedisMessageConstant;
 import com.bothsavage.entity.Result;
-import com.bothsavage.utils.SMSUtils;
 import com.bothsavage.utils.ValidateCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

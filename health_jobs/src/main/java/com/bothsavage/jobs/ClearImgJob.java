@@ -1,7 +1,6 @@
 package com.bothsavage.jobs;
 
 import com.bothsavage.constant.RedisConstant;
-import com.bothsavage.utils.QiniuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisPool;
 

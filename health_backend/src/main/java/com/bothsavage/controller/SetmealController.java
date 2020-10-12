@@ -9,7 +9,6 @@ import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.Setmeal;
 import com.bothsavage.service.SetmealService;
-import com.bothsavage.utils.QiniuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
