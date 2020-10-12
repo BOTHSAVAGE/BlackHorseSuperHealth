@@ -27,7 +27,8 @@ public class ValidateCodeController {
         Integer validateCode = ValidateCodeUtils.generateValidateCode(4);
         //给用户发送验证码
         try{
-            SMSUtils.sendShortMessage(SMSUtils.VALIDATE_CODE,telephone,validateCode.toString());
+//            SMSUtils.sendShortMessage(SMSUtils.VALIDATE_CODE,telephone,validateCode.toString());
+            System.out.println(telephone+":"+validateCode.toString());
         }catch (Exception e){
             e.printStackTrace();
             return new Result(false, MessageConstant.SEND_VALIDATECODE_FAIL);

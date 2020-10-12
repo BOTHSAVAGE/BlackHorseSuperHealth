@@ -2,7 +2,6 @@ package com.bothsavage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.bothsavage.constant.MessageConstant;
-import com.bothsavage.constant.RedisMessageConstant;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.Order;
 import com.bothsavage.service.OrderService;
@@ -30,11 +29,21 @@ public class OrderController {
     public Result submit(@RequestBody Map map){
         String telephone = (String) map.get("telephone");
         //从Redis中获取保存的验证码
-        String validateCodeInRedis = jedisPool.getResource().get(telephone + RedisMessageConstant.SENDTYPE_ORDER);
+//        String validateCodeInRedis = jedisPool.getResource().get(telephone + RedisMessageConstant.SENDTYPE_ORDER);
+        String validateCodeInRedis = "0000";//todo 压测使用
         String validateCode = (String) map.get("validateCode");
 
         //将用户输入的验证码和Redis中保存的验证码进行比对
-        if(validateCodeInRedis != null && validateCode != null && validateCode.equals(validateCodeInRedis)){
+        if(validateCodeInRedis != null && validateCode
+
+
+
+
+
+
+
+
+                != null && validateCode.equals(validateCodeInRedis)){
             //如果比对成功，调用服务完成预约业务处理
             map.put("orderType", Order.ORDERTYPE_WEIXIN);//设置预约类型，分为微信预约、电话预约
             Result result = null;

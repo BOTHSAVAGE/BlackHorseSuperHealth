@@ -52,6 +52,13 @@ public class DateUtils {
         return parseDate2String(date, "yyyy-MM-dd");
     }
 
+    public static String parseDate2StringDetail(Date date) throws Exception {
+        if (date == null) {
+            return null;
+        }
+        return parseDate2String(date, "yyyy-MM-dd : HH:mm:ss");
+    }
+
     /**
      * 日期转换 Date -> String
      *

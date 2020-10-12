@@ -4,6 +4,9 @@ package com.bothsavage.constant;
  * 消息返回常量
  */
 public class MessageConstant {
+    public static final String QUERY_ORDER_DETAIL_SUCCESS = "查询订单成功";
+    public static final String QUERY_ORDER_DETAIL_FALSE = "查询订单失败";
+
     public static final String DELETE_CHECKITEM_FAIL_RELATION = "删除检查项失败，当前检查项被关联";
     public static final String DELETE_CHECKITEM_FAIL = "删除检查项失败";
     public static final String DELETE_CHECKITEM_SUCCESS = "删除检查项成功";

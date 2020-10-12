@@ -1,6 +1,7 @@
 package com.bothsavage.dao;
 
 import com.bothsavage.pojo.Order;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -74,4 +75,7 @@ public interface OrderDao {
      * @return 套餐预约数量前四名
      */
     List<Map<String, Object>> findHotSetmeal();
+
+    Page<Map> findAll();
+
 }

@@ -11,45 +11,11 @@
         <!-- 引入样式 -->
         <link rel="stylesheet" href="plugins/elementui/index.css">
         <link rel="stylesheet" href="css/login.css">
-        <script src="js/vue.js"></script>
-        <script src="plugins/elementui/index.js"></script>
-        <link rel="stylesheet" href="css/style.css">
-
     </head>
     <body class="hold-transition skin-purple sidebar-mini">
         <div id="app">
             <div class="login-container">
-                <!--<el-row>-->
-                    <!--<el-col :span="8"><div class="grid-content bg-purple"></div></el-col>-->
-                    <!--<el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>-->
-                    <!--<el-col :span="8"><div class="grid-content bg-purple"></div></el-col>-->
-                <!--</el-row>-->
-
-
-
-                <el-row :gutter="12" >
-                    <el-col :span="8">
-                        <el-card shadow="always">
-                            总是显示
-                        </el-card>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-card shadow="hover" style="border-radius: 30px; width:100%;margin-bottom:30px;" >
-                            鼠标悬浮时显示
-                        </el-card>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-card shadow="never">
-                            从不显示
-                        </el-card>
-                    </el-col>
-                </el-row>
-
-
-
-                <div class="loginBox" style="border-radius: 30px">
-
-
+                <div class="loginBox">
                   <form method="post" class="login-form" action="/login.do" label-position="left">
                       <div class="title-container">
                         <div class="logoInfo clearfix">
@@ -70,45 +36,11 @@
                       </div>
                       <input type="submit" style="width:100%;margin-bottom:30px;" value="登录"></input>
                 </form>
-
-
                 </div>
-            </div>
-
-
+              </div>
         </div>
     </body>
     <!-- 引入组件库 -->
-    <script>
-        new Vue({
-            el: '#app',
-            data: function() {
-                return { visible: false }
-            }
-        })
-    </script>
-    <style>
-        .el-row {
-            margin-bottom: 20px;
-        &:last-child {
-             margin-bottom: 0;
-         }
-        }
-
-
-        .el-col {
-            border-radius: 4px;
-        }
-        .bg-purple {
-            background: #d3dce6;
-        }
-        .bg-purple-light {
-            background: #e5e9f2;
-        }
-        .grid-content {
-            border-radius: 4px;
-            min-height: 36px;
-        }
-    </style>
-
+    <script src="js/vue.js"></script>
+    <script src="plugins/elementui/index.js"></script>
 </html>

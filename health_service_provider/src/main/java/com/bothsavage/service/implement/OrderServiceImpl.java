@@ -5,14 +5,19 @@ import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.dao.MemberDao;
 import com.bothsavage.dao.OrderDao;
 import com.bothsavage.dao.OrderSettingDao;
+import com.bothsavage.entity.PageResult;
+import com.bothsavage.entity.QueryPageBean;
 import com.bothsavage.entity.Result;
 import com.bothsavage.pojo.Member;
 import com.bothsavage.pojo.Order;
 import com.bothsavage.pojo.OrderSetting;
 import com.bothsavage.service.OrderService;
 import com.bothsavage.utils.DateUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -99,5 +104,33 @@ public class OrderServiceImpl implements OrderService {
             map.put("orderDate",DateUtils.parseDate2String(orderDate));
         }
         return map;
+    }
+
+    @Override
+    public List<Map> findAll() throws Exception {
+        List<Map> list = orderDao.findAll();
+        for (Map map:list){
+            //处理日期格式
+            Date orderDate = (Date) map.get("orderDate");
+            map.put("orderDate",DateUtils.parseDate2StringDetail(orderDate));
+        }
+        return list;
+
+    }
+
+    @Override
+    public PageResult pageQuery(QueryPageBean queryPageBean) {
+        Integer currentPage = queryPageBean.getCurrentPage();
+        Integer pageSize = queryPageBean.getPageSize();
+
+
+        //完成分页查询，基于mybatis框架提供的分页助手插件完成
+        PageHelper.startPage(currentPage,pageSize);//todo 分页助手（第几页，行数）
+        //select * from t_checkitem limit 0,10
+        Page<Map> page = orderDao.findAll();
+        long total = page.getTotal();//todo 分页助手api
+
+        List<Map> rows = page.getResult();
+        return new PageResult(total,rows);
     }
 }
