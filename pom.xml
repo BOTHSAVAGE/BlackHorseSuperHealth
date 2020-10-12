@@ -17,9 +17,15 @@
     </modules>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
 
-    <!-- 集中定义依赖版本�?-->
+    <!-- 集中定义依赖版本�?-->
     <properties>
         <junit.version>4.12</junit.version>
         <spring.version>5.0.5.RELEASE</spring.version>
@@ -39,7 +45,7 @@
         <jedis.version>2.9.0</jedis.version>
         <quartz.version>2.2.1</quartz.version>
     </properties>
-    <!-- 依赖管理标签  必须�?-->
+    <!-- 依赖管理标签  必须�?-->
     <dependencyManagement>
         <dependencies>
             <!-- Spring -->
@@ -156,7 +162,7 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <!-- 连接�?-->
+            <!-- 连接�?-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
