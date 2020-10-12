@@ -1,67 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xmlns:security="http://www.springframework.org/schema/security"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">-->
 
-    <!--todo security="none" 表示的意思就是不进行权限的控制-->
-    <security:http pattern="/css/**" security="none"/>
-    <security:http pattern="/img/**" security="none"/>
-    <security:http pattern="/js/**" security="none"/>
-    <security:http pattern="/plugins/**" security="none"/>
-
-
-    <!--页面拦截规则-->
-    <!--
-
-     auto-config="true" 自动配置，如果设置为true表示自动应用一些默认的配置，比如框架会提供一个默认的登录页面
-
-     use-expressions：是否使用spring security提供的表达式来描述我们的权限
-
-    -->
-    <security:http auto-config="true" use-expressions="true">
-
-        <!--设置同源策略 目的是使得 iframe可以被访问-->
-        <security:headers>
-            <security:frame-options policy="SAMEORIGIN"></security:frame-options>
-        </security:headers>
-
-        <!--todo 这里的isAuthenticated方法是spring security提供的 -->
-        <security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>
-        <!--使用自定义的登录页面-->
-        <security:form-login login-page="/login.html"
-                             username-parameter="username"
-                             password-parameter="password"
-                             login-processing-url="/login.do"
-                             always-use-default-target="true"
-                             default-target-url="/pages/main.html"
-                             authentication-failure-url="/login.html"/>
-
-        <!--退出登录设置  这个框架是基于session来实现的-->
-        <!--todo 这里是一个弊端，集群的时候session不好使-->
-        <security:logout logout-url="/logout.do" logout-success-url="/login.html" invalidate-session="true"/>
-
-        <!--禁用csrf过滤器(如果使用自定义登录页面 必须关闭csrf过滤器)-->
-        <security:csrf disabled="true"/>
-    </security:http>
-
-    <!--认证管理器-->
-    <security:authentication-manager>
-        <!--认证提供者 执行具体的认证逻辑-->
-        <security:authentication-provider user-service-ref="securityUserService">
-            <!--指定密码加密策略-->
-            <security:password-encoder ref="MyPasswordEncoder"/>
-
-        </security:authentication-provider>
-
-    </security:authentication-manager>
-
-    <!--bcryptCode 加密方式-->
-    <bean class="com.bothsavage.utils.MyPasswordEncoder" id="MyPasswordEncoder"/>
-    <!--todo 具体登录验证类，已经通过注解管理了-->
-
-    <!--开启注册控制权限-->
-    <security:global-method-security pre-post-annotations="enabled"/>
+    <!--&lt;!&ndash;todo security="none" 表示的意思就是不进行权限的控制&ndash;&gt;-->
+    <!--<security:http pattern="/css/**" security="none"/>-->
+    <!--<security:http pattern="/img/**" security="none"/>-->
+    <!--<security:http pattern="/js/**" security="none"/>-->
+    <!--<security:http pattern="/plugins/**" security="none"/>-->
 
 
-</beans>
+    <!--&lt;!&ndash;页面拦截规则&ndash;&gt;-->
+    <!--&lt;!&ndash;-->
+
+     <!--auto-config="true" 自动配置，如果设置为true表示自动应用一些默认的配置，比如框架会提供一个默认的登录页面-->
+
+     <!--use-expressions：是否使用spring security提供的表达式来描述我们的权限-->
+
+    <!--&ndash;&gt;-->
+    <!--<security:http auto-config="true" use-expressions="true">-->
+
+        <!--&lt;!&ndash;设置同源策略 目的是使得 iframe可以被访问&ndash;&gt;-->
+        <!--<security:headers>-->
+            <!--<security:frame-options policy="SAMEORIGIN"></security:frame-options>-->
+        <!--</security:headers>-->
+
+        <!--&lt;!&ndash;todo 这里的isAuthenticated方法是spring security提供的 &ndash;&gt;-->
+        <!--<security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>-->
+        <!--&lt;!&ndash;使用自定义的登录页面&ndash;&gt;-->
+        <!--<security:form-login login-page="/login.html"-->
+                             <!--username-parameter="username"-->
+                             <!--password-parameter="password"-->
+                             <!--login-processing-url="/login.do"-->
+                             <!--always-use-default-target="true"-->
+                             <!--default-target-url="/pages/main.html"-->
+                             <!--authentication-failure-url="/login.html"/>-->
+
+        <!--&lt;!&ndash;退出登录设置  这个框架是基于session来实现的&ndash;&gt;-->
+        <!--&lt;!&ndash;todo 这里是一个弊端，集群的时候session不好使&ndash;&gt;-->
+        <!--<security:logout logout-url="/logout.do" logout-success-url="/login.html" invalidate-session="true"/>-->
+
+        <!--&lt;!&ndash;禁用csrf过滤器(如果使用自定义登录页面 必须关闭csrf过滤器)&ndash;&gt;-->
+        <!--<security:csrf disabled="true"/>-->
+    <!--</security:http>-->
+
+    <!--&lt;!&ndash;认证管理器&ndash;&gt;-->
+    <!--<security:authentication-manager>-->
+        <!--&lt;!&ndash;认证提供者 执行具体的认证逻辑&ndash;&gt;-->
+        <!--<security:authentication-provider user-service-ref="securityUserService">-->
+            <!--&lt;!&ndash;指定密码加密策略&ndash;&gt;-->
+            <!--<security:password-encoder ref="MyPasswordEncoder"/>-->
+
+        <!--</security:authentication-provider>-->
+
+    <!--</security:authentication-manager>-->
+
+    <!--&lt;!&ndash;bcryptCode 加密方式&ndash;&gt;-->
+    <!--<bean class="com.bothsavage.utils.MyPasswordEncoder" id="MyPasswordEncoder"/>-->
+    <!--&lt;!&ndash;todo 具体登录验证类，已经通过注解管理了&ndash;&gt;-->
+
+    <!--&lt;!&ndash;开启注册控制权限&ndash;&gt;-->
+    <!--<security:global-method-security pre-post-annotations="enabled"/>-->
+
+
+<!--</beans>-->

@@ -1,7 +1,6 @@
 package com.bothsavage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-
 import com.bothsavage.constant.MessageConstant;
 import com.bothsavage.constant.RedisConstant;
 import com.bothsavage.entity.PageResult;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.JedisPool;
 
-import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -27,8 +25,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/setmeal")
 public class SetmealController {
-    //使用JedisPool操作Redis服务
-    //TODO jedis这个以前还没看到过
     @Autowired
     private JedisPool jedisPool;
 
@@ -42,9 +38,10 @@ public class SetmealController {
         String fileName = UUID.randomUUID().toString() + extention;//	FuM1Sa5TtL_ekLsdkYWcf5pyjKGu.jpg
         try {
             //将文件上传到七牛云服务器
-            QiniuUtils.upload2Qiniu(imgFile.getBytes(),fileName);
+            System.out.println("模拟上传");
+
             jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES,fileName);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);
         }

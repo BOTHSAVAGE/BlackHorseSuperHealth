@@ -1,0 +1,22 @@
+#spring boot应用启动的端口
+server:
+  port: 8081
+
+#spring的具体配置
+spring:
+  application:
+    name: Backend #springboot应用的id
+  dubbo:
+    application:
+      name: Backend
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    protocol:
+      name: dubbo
+
+
+
+
+
+
+
