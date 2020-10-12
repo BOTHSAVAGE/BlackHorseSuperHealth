@@ -9,12 +9,8 @@ import com.bothsavage.pojo.Setmeal;
 import com.bothsavage.service.SetmealService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
@@ -36,8 +32,8 @@ public class SetmealServiceImpl implements SetmealService{
     @Autowired
     private JedisPool jedisPool;
 
-    @Autowired
-    FreeMarkerConfigurer freeMarkerConfigurer;
+//    @Autowired
+//    FreeMarkerConfigurer freeMarkerConfigurer;
 
     private String outPutPath = "D:/Work/JavaWork/BlackHorseSuperHealth/health_mobile/src/main/webapp/pages";
 
@@ -61,21 +57,21 @@ public class SetmealServiceImpl implements SetmealService{
     //用于生成静态页面的通用方法
     public void generateHtml(String templateName,String htmlPageName,Map map){
         //拿到配置对象
-        Configuration configuration = freeMarkerConfigurer.getConfiguration();
+//        Configuration configuration = freeMarkerConfigurer.getConfiguration();
         //声明字符串writer
         Writer out = null;
         try {
             //得到模板
-            Template template = configuration.getTemplate(templateName);
+//            Template template = configuration.getTemplate(templateName);
             //构建输出流 todo 这里使用的是filewriter 会把重名的覆盖掉
             out = new FileWriter(new File(outPutPath+"/"+htmlPageName));
             //输出文件
-            template.process(map,out);
+//            template.process(map,out);
             out.close();
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (TemplateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
